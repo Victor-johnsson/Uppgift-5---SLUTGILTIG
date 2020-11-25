@@ -20,16 +20,21 @@ public class PersonRegister {
 		return p;
 	}
 	public Person removePerson(String pNbr){
-		Person p;
-		p=personHashMap.get(pNbr);
-		personHashMap.remove(pNbr);
-		return p;
+		if(personHashMap.containsKey(pNbr)){
+			Person p = personHashMap.get(pNbr);
+			personHashMap.remove(pNbr);
+			return p;
+		}
+		return null;
 	}
+
 	public Account findAccount(String pNbr, String accountNbr){
-		Person p;
-		Account a;
-		p=personHashMap.get(pNbr);
-		a=p.findAccount(accountNbr);
-		return a;
+		Person tempPerson=personHashMap.get(pNbr);
+		if(tempPerson != null){
+			Account tempAccount =tempPerson.findAccount(accountNbr);
+			return tempAccount;
+		}
+		return null;
 	}
+
 }
